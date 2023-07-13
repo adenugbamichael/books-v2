@@ -2,10 +2,10 @@
 
 A simple mern stack CRUD book application, showcasing the use of NodeJs, Express & MongoDB.
 
-<img width="40%" src="/client/src/assets/book.png" alt="home" title="Books">
+[<img width="40%" src="/client/src/assets/book.png" alt="home" title="Books">
 <img width="40%" src="/client/src/assets/edit.png" alt="edit" title="Edit Book">
 <img width="40%" src="/client/src/assets/single.png" alt="details" title="Book Details">
-<img width="40%" src="/client/src/assets/update.png" alt="add" title="Add a New Book">
+<img width="40%" src="/client/src/assets/update.png" alt="add" title="Add a New Book">]
 
 # 🚀 Getting Started
 
