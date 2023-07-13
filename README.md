@@ -16,7 +16,7 @@ A simple mern stack CRUD book application, showcasing the use of NodeJs, Express
 
 ## Tech Stack
 
-**Client:** React, Redux, HTML, CSS
+**Client:** React, HTML, CSS
 
 **Server:** Node, Express, MongoDB,
 
