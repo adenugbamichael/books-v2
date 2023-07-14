@@ -71,6 +71,7 @@ const UpdateBook = () => {
             <input
               onChange={onImageChange}
               type='file'
+              required
               accept='image/gif, image/jpeg, image/png'
             />
           </div>
@@ -80,6 +81,7 @@ const UpdateBook = () => {
               <input
                 type='text'
                 value={title}
+                required
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
@@ -88,6 +90,7 @@ const UpdateBook = () => {
               <input
                 type='text'
                 value={slug}
+                required
                 onChange={(e) => setSlug(e.target.value)}
               />
             </div>
@@ -96,6 +99,7 @@ const UpdateBook = () => {
               <input
                 type='text'
                 value={stars}
+                required
                 onChange={(e) => setStars(e.target.value)}
               />
             </div>
@@ -105,6 +109,7 @@ const UpdateBook = () => {
                 rows='4'
                 cols='50'
                 value={description}
+                required
                 onChange={(e) => setDescription(e.target.value)}
               />
             </div>
@@ -114,6 +119,7 @@ const UpdateBook = () => {
               <input
                 type='text'
                 value={categories}
+                required
                 onChange={handleCategoryChange}
               />
             </div>
