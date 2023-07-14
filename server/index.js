@@ -13,11 +13,11 @@ connectDB()
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-app.use("/uploads", express.static("uploads"))
+// app.use("/uploads", express.static("uploads"))
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve()
-  app.use("/uploads", express.static("/uploads"))
+  app.use("/uploads", express.static("/var/data/uploads"))
   app.use(express.static(path.join(__dirname, "/client/build")))
 
   app.get("*", (req, res) =>
@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve()
   app.use("/uploads", express.static(path.join(__dirname, "/uploads")))
   app.get("/", (req, res) => {
-    res.send("API is running....")
+    res.json("Hello world")
   })
 }
 
@@ -129,10 +129,6 @@ app.delete("/api/books/:id", async (req, res) => {
   } catch (error) {
     res.json(error)
   }
-})
-
-app.get("/", (req, res) => {
-  res.json("Hello world")
 })
 
 app.get("*", (req, res) => {
