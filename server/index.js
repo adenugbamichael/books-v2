@@ -7,13 +7,13 @@ const Book = require("./models/Books")
 const multer = require("multer")
 
 const app = express()
-const PORT = process.env.PORT || 1000
+const PORT = process.env.PORT || 8000
 
 connectDB()
 app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
-// app.use("/uploads", express.static("uploads"))
+app.use("/uploads", express.static("uploads"))
 
 if (process.env.NODE_ENV === "production") {
   const __dirname = path.resolve()
