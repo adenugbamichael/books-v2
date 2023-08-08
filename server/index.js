@@ -15,22 +15,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use("/uploads", express.static("uploads"))
 
-if (process.env.NODE_ENV === "production") {
-  const __dirname = path.resolve()
-  app.use("/uploads", express.static("uploads"))
-  app.use(express.static(path.join(__dirname, "/client/dist")))
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
-  )
-} else {
-  const __dirname = path.resolve()
-  app.use("/uploads", express.static("uploads"))
-  app.get("/", (req, res) => {
-    res.json("Hello world")
-  })
-}
-
+// Get All Books
 app.get("/api/books", async (req, res) => {
   try {
     const category = req.query.category
@@ -41,11 +27,13 @@ app.get("/api/books", async (req, res) => {
     }
 
     const data = await Book.find(filter)
-    res.json(data)
+ if (!data) {
+      throw new Error("An error occurred while fetching books.");
+    }
+    
+    res.status(201).json(data);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching the books" })
+    res.status(500).json({ error: "An error occurred while fetching books." });
   }
 })
 
@@ -54,11 +42,13 @@ app.get("/api/books/:slug", async (req, res) => {
     const slugParam = req.params.slug
 
     const data = await Book.findOne({ slug: slugParam })
-    res.json(data)
+    if (!data) {
+      throw new Error("An error occurred while fetching a book.");
+    }
+    
+    res.status(201).json(data);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "An error occurred while fetching the books" })
+    res.status(500).json({ error: "An error occurred while fetching books." });
   }
 })
 
@@ -130,6 +120,10 @@ app.delete("/api/books/:id", async (req, res) => {
     res.json(error)
   }
 })
+
+app.get("/", (req, res) => {
+  res.json("Hello mate!");
+});
 
 app.get("*", (req, res) => {
   res.sendStatus("404")
