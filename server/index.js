@@ -1,5 +1,4 @@
 require("dotenv").config()
-const path = require("path")
 const cors = require("cors")
 const express = require("express")
 const connectDB = require("./connectDB")
@@ -15,7 +14,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use("/uploads", express.static("uploads"))
 
-
 // Get All Books
 app.get("/api/books", async (req, res) => {
   try {
@@ -27,13 +25,13 @@ app.get("/api/books", async (req, res) => {
     }
 
     const data = await Book.find(filter)
- if (!data) {
-      throw new Error("An error occurred while fetching books.");
+    if (!data) {
+      throw new Error("An error occurred while fetching books.")
     }
-    
-    res.status(201).json(data);
+
+    res.status(201).json(data)
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while fetching books." });
+    res.status(500).json({ error: "An error occurred while fetching books." })
   }
 })
 
@@ -43,12 +41,12 @@ app.get("/api/books/:slug", async (req, res) => {
 
     const data = await Book.findOne({ slug: slugParam })
     if (!data) {
-      throw new Error("An error occurred while fetching a book.");
+      throw new Error("An error occurred while fetching a book.")
     }
-    
-    res.status(201).json(data);
+
+    res.status(201).json(data)
   } catch (error) {
-    res.status(500).json({ error: "An error occurred while fetching books." });
+    res.status(500).json({ error: "An error occurred while fetching books." })
   }
 })
 
@@ -122,13 +120,13 @@ app.delete("/api/books/:id", async (req, res) => {
 })
 
 app.get("/", (req, res) => {
-  res.json("Hello mate!");
-});
+  res.json("Hello mate!")
+})
 
 app.get("*", (req, res) => {
   res.sendStatus("404")
 })
 
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
+  console.log(`Server is running on Port: ${PORT}`)
 })
